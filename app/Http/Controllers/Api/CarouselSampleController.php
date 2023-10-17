@@ -32,7 +32,7 @@ class CarouselSampleController extends Controller
      */
     public function show(string $id)
     {
-        return CarouselSample::findorfail($id);
+        return CarouselSample::findOrfail($id);
     }
 
     /**
