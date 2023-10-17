@@ -48,6 +48,11 @@ class CarouselSampleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $carousel = CarouselSample::findOrfail($id);
+
+        $carousel->delete();
+
+
+        return  $carousel;
     }
 }

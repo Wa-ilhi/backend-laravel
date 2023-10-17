@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/carousel', [CarouselSampleController::class, 'index']);
 Route::get('/carousel/{id}', [CarouselSampleController::class, 'show']);
+Route::delete('/carousel/{id}', [CarouselSampleController::class, 'destroy']);
