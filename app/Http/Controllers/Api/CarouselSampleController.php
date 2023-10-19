@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+
 use App\Models\CarouselSample;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\CarouselSampleRequest;
 
 class CarouselSampleController extends Controller
 {
@@ -22,9 +23,13 @@ class CarouselSampleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CarouselSampleRequest $request)
     {
-        //
+
+        $validated = $request->validated();
+        $carousel = CarouselSample::create($validated);
+
+        return $carousel;
     }
 
     /**
@@ -38,9 +43,14 @@ class CarouselSampleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CarouselSampleRequest $request, string $id)
     {
-        //
+        $validated = $request->validated();
+
+        $carousel = CarouselSample::findOrfail($id);
+        $carousel->update($validated);
+
+        return $carousel;
     }
 
     /**
@@ -49,6 +59,7 @@ class CarouselSampleController extends Controller
     public function destroy(string $id)
     {
         $carousel = CarouselSample::findOrfail($id);
+
 
         $carousel->delete();
 
