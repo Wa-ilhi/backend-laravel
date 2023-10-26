@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\CarouselSample;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CarouselSampleRequest;
+use Illuminate\Support\Facades\Hash;
 
 class CarouselSampleController extends Controller
 {
@@ -27,6 +28,7 @@ class CarouselSampleController extends Controller
     {
 
         $validated = $request->validated();
+        $validated['password'] = Hash::make($validated['password']);
         $carousel = CarouselSample::create($validated);
 
         return $carousel;
